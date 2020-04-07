@@ -21,6 +21,16 @@ const router = new VueRouter({
       name: "other",
       component: () => import("@/views/Other"),
     },
+    {
+      path: '/404',
+      name: '404',
+      component: () => import("@/views/NotFound"),
+      props: true
+    },
+    {
+      path: '*',
+      redirect: { name: '404', params: { resource: 'page' } }
+    }
   ]
 });
 
