@@ -10,7 +10,7 @@ services:
       "-Dquarkus.http.host=0.0.0.0",
       "-Dquarkus.http.cors=true",
       "-Dquarkus.http.cors.methods=GET,PUT,POST",
-      "-Dquarkus.http.cors.origins=http://localhost:3000"
+      "-Dquarkus.http.cors.origins=http://localhost:3000,http://localhost"
     ]
     ports:
       - 8888:8080 # for testing purposes
