@@ -1,3 +1,5 @@
+import { UserService } from "@/api";
+
 const initialState = {
     currentUser: {
       id: '',
@@ -9,6 +11,11 @@ const initialState = {
 
 export const state = { ...initialState };
 export const actions = {
+  async fetchRandomUser({commit}) {
+    const { data } = await UserService.getRandomUser();
+    commit("setCurrentUser", data);
+    return data;
+  },
   resetCurrentUser({commit}){
     commit('setCurrentUser', initialState.currentUser);
   }
