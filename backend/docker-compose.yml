@@ -1,7 +1,7 @@
 version: "3.4"
 services:
   backend:
-    image: zhenik/example-backend:1.0:
+    image: zhenik/example-backend:1.0
     command: [
       "./application",
       "-Dquarkus.http.host=0.0.0.0",
@@ -14,8 +14,3 @@ services:
     ]
     ports:
       - 8080:8080
-    networks:
-      - backend
-    depends_on:
-      - mongo
-
