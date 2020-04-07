@@ -10,9 +10,6 @@ services:
       "-Dquarkus.http.host=0.0.0.0",
       "-Dquarkus.http.cors=true",
       "-Dquarkus.http.cors.methods=GET,PUT,POST",
-      "-Dquarkus.http.proxy-address-forwarding=true",
-      "-Dquarkus.http.allow-forwarded=true",
-      "-Dquarkus.http.cors.access-control-max-age=24H",
       "-Dquarkus.http.cors.origins=http://localhost:3000"
     ]
     ports:
@@ -20,7 +17,7 @@ services:
 
   # hot-reload is not available?
   frontend:
-    container_name: proxy
+    container_name: frontend
     build:
       context: .nginx.conf
       dockerfile: Dockerfile
