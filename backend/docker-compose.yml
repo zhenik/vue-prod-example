@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  backend:
+    image: zhenik/example-backend:1.0:
+    command: [
+      "./application",
+      "-Dquarkus.http.host=0.0.0.0",
+      "-Dquarkus.http.cors=true",
+      "-Dquarkus.http.cors.methods=GET,PUT,POST",
+      "-Dquarkus.http.proxy-address-forwarding=true",
+      "-Dquarkus.http.allow-forwarded=true",
+      "-Dquarkus.http.cors.access-control-max-age=24H",
+      "-Dquarkus.http.cors.origins=http://localhost"
+    ]
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
