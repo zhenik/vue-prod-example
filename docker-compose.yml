@@ -5,6 +5,8 @@ services:
     container_name: backend
     hostname: backend
     image: zhenik/example-backend:1.0
+    networks:
+      - custom_network
     command: [
       "./application",
       "-Dquarkus.http.host=0.0.0.0",
@@ -22,10 +24,19 @@ services:
       context: .nginx.conf
       dockerfile: Dockerfile
     image: zhenik/nginx-with-curl:1.17.9
+    networks:
+      - custom_network
     volumes:
       - "./frontend/dist:/app"
-      - "./.nginx.conf/default1.conf:/etc/nginx/conf.d/default.conf"
+      - "./.nginx.conf/default1.conf:/etc/nginx/conf.d/default.conf" # loopback
+#      - "./.nginx.conf/default2.conf:/etc/nginx/conf.d/default.conf" # docker dns, change fronted/.env.production and build frontend
     ports:
       - 3080:80
       - 3000:3000
       - 3001:3001
+    depends_on:
+      - backend
+networks:
+  custom_network:
+#    external:
+#      name: custom-network
