@@ -22,6 +22,11 @@ const router = new VueRouter({
       component: () => import("@/views/Other"),
     },
     {
+      path: "/auth-play",
+      name: "authPlay",
+      component: () => import("@/views/AuthPlay"),
+    },
+    {
       path: '/404',
       name: '404',
       component: () => import("@/views/NotFound"),

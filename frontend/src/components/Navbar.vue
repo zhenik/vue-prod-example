@@ -11,6 +11,9 @@
         <li>
           <router-link to="/other">Some other page</router-link>
         </li>
+        <li>
+          <router-link to="/auth-play">Auth play</router-link>
+        </li>
       </ul>
     </nav>
   </header>

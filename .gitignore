@@ -3,13 +3,14 @@
 .classpath
 .settings/
 bin/
+firebase.js
 
 # IntelliJ
 .idea
 *.ipr
 *.iml
 *.iws
-
+*.env*
 # NetBeans
 nb-configuration.xml
 
