@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import axios from "axios";
 
 const initialState = {
   user: null
@@ -34,6 +35,27 @@ export const actions = {
           commit('setError', error);
           console.log(error)
         })
+  },
+  authVerify(context) {
+    console.log("Auth request start", context.state)
+    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+      const config = {
+        headers: {
+          // 'Token': this.user.token,
+          'Token': idToken,
+        }
+      };
+      axios.post(`http://localhost:8080/auth`, null, config)
+          .then(response => {
+            console.log("Status code: " + response.status);
+          })
+          .catch(e => {
+            console.log("Error : " + e);
+          })
+    }).catch(function(error) {
+      // Handle error
+      console.log("Error " + error)
+    });
   },
   logout({commit}) {
     firebase.auth().signOut();
