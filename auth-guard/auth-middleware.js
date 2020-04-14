@@ -14,11 +14,13 @@ admin.initializeApp(appConfig);
 console.log("Project id " + admin.app().name)
 
 var whitelist = ['http://localhost:3000']
+// todo: use white list for cors
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
+      console.log("Origin "+ JSON.stringify(origin))
       callback(new Error('Not allowed by CORS'))
     }
   }
@@ -27,7 +29,8 @@ var corsOptions = {
 var app = express();
 app.use(cors())
 
-app.post('/auth', cors(corsOptions), function(req, res, next) {
+// app.post('/auth', cors(corsOptions), function(req, res, next) {
+app.post('/auth', function(req, res, next) {
   authenticate(req, res);
 });
 
