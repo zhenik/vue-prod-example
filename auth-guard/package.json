@@ -2,9 +2,9 @@
   "name": "auth-guard-firebase-proxy",
   "version": "1.0.0",
   "description": "No description",
-  "main": "proxy.js",
+  "main": "auth-middleware.js",
   "scripts": {
-    "start": "node proxy.js"
+    "start": "node auth-middleware.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
