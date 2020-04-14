@@ -37,12 +37,14 @@ export const actions = {
         })
   },
   authVerify(context) {
-    console.log("Auth request start", context.state)
-    firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+    console.log("Auth request start", JSON.stringify(context.state.user.token))
+
+    const token = context.state.user.token.i;
+    console.log("Token "+ token)
       const config = {
         headers: {
-          // 'Token': this.user.token,
-          'Token': idToken,
+          'Token': token,
+          // 'Token': idToken,
         }
       };
       axios.post(`http://localhost:8080/auth`, null, config)
@@ -51,11 +53,7 @@ export const actions = {
           })
           .catch(e => {
             console.log("Error : " + e);
-          })
-    }).catch(function(error) {
-      // Handle error
-      console.log("Error " + error)
-    });
+          });
   },
   logout({commit}) {
     firebase.auth().signOut();
