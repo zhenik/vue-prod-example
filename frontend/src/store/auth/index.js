@@ -41,19 +41,19 @@ export const actions = {
 
     const token = context.state.user.token.i;
     console.log("Token "+ token)
-      const config = {
-        headers: {
-          'Token': token,
-          // 'Token': idToken,
-        }
-      };
-      axios.post(`http://localhost:8080/auth`, null, config)
-          .then(response => {
-            console.log("Status code: " + response.status);
-          })
-          .catch(e => {
-            console.log("Error : " + e);
-          });
+    const config = {
+      headers: {
+        'Token': token,
+        // 'Token': idToken,
+      }
+    };
+    axios.post(`http://auth-guard:8080/auth`, null, config)
+        .then(response => {
+          console.log("Status code: " + response.status);
+        })
+        .catch(e => {
+          console.log("Error : " + e);
+        });
   },
   logout({commit}) {
     firebase.auth().signOut();
@@ -69,6 +69,16 @@ export const getters = {
     const authenticated = (state.user !== null && state.user !== undefined);
     const authorized = (state.profile !== null && state.profile !== undefined);
     return (authenticated && authorized);
+  },
+  authToken(state) {
+    if (state.user!== null) {
+      if (state.user.token !== null) {
+        const t = state.user.token.i
+        console.log("Token store "+ t)
+        return t;
+      }
+    }
+    return null;
   }
 }
 
