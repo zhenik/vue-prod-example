@@ -32,5 +32,19 @@ services:
       - 3001:3001
     depends_on:
       - backend
+
+  auth-guard:
+    container_name: auth-guard
+    build:
+      context: auth-guard
+      dockerfile: Dockerfile
+    image: zhenik/auth-guard:1.0
+    volumes:
+      - "./auth-guard/project-credentials.json:/usr/src/app/project-credentials.json"
+    ports:
+      - 8080:8080
+    environment:
+      - PROJECT_ID=${PROJECT_ID}
+
 networks:
   custom_network:
