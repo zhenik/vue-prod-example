@@ -1,0 +1,14 @@
+{
+  "name": "auth-guard-firebase-proxy",
+  "version": "1.0.0",
+  "description": "No description",
+  "main": "proxy.js",
+  "scripts": {
+    "start": "node proxy.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0"
+  }
+}
