@@ -43,8 +43,8 @@ services:
       - "./auth-guard/project-credentials.json:/usr/src/app/project-credentials.json"
     ports:
       - 8080:8080
-    environment:
-      - PROJECT_ID=${PROJECT_ID}
+#    environment:
+#      - PROJECT_ID=${PROJECT_ID}
 
 networks:
   custom_network:

@@ -7,8 +7,7 @@ const admin = require('firebase-admin'),
 
 //Firebase Admin SDK
 const appConfig = {
-  credential: admin.credential.cert(serviceAccount),
-  projectId: process.env.PROJECT_ID
+  credential: admin.credential.cert(serviceAccount)
 }
 admin.initializeApp(appConfig);
 console.log("Project id " + admin.app().name)
